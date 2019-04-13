@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b16dd881dbdf42bf923452ac1d99ec2b" Name="Diagram1">
+        <EntityTypeShape EntityType="HSLprojectModel.article" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.author" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.book" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.customer" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.employee" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.item" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.magazine" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.monthly_expense" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.mothlyexpense_employee" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.rent" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.transaction" Width="1.5" PointX="10" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSLprojectModel.volume" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="HSLprojectModel.fk_volume_article" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.fk_trn_cust" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.fk_expense_monthly_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.fk_volume_magazine" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.fk_expense_monthly_expnse" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.fk_expense_rent" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.author_articles" ManuallyRouted="false" />
+        <AssociationConnector Association="HSLprojectModel.book_author" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

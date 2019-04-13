@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HSLprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="article_id" />
+    </Key>
+    <Property Name="article_id" Type="Int32" Nullable="false" />
+    <Property Name="page" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="volume_id" Type="Int32" />
+    <Property Name="year" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="volume" Relationship="Self.fk_volume_article" FromRole="articles" ToRole="volume" />
+    <NavigationProperty Name="authors" Relationship="Self.author_articles" FromRole="articles" ToRole="author" />
+  </EntityType>
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="articles" Relationship="Self.author_articles" FromRole="author" ToRole="articles" />
+    <NavigationProperty Name="books" Relationship="Self.book_author" FromRole="author" ToRole="book" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="book_id" Type="Int32" Nullable="false" />
+    <Property Name="item_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="authors" Relationship="Self.book_author" FromRole="book" ToRole="author" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="Int32" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="transactions" Relationship="Self.fk_trn_cust" FromRole="customer" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="SIN" />
+    </Key>
+    <Property Name="SIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hourly_rate" Type="Decimal" />
+    <NavigationProperty Name="mothlyexpense_employee" Relationship="Self.fk_expense_monthly_employee" FromRole="employee" ToRole="mothlyexpense_employee" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price" Type="Single" Nullable="false" />
+  </EntityType>
+  <EntityType Name="magazine">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="volumes" Relationship="Self.fk_volume_magazine" FromRole="magazine" ToRole="volume" />
+  </EntityType>
+  <EntityType Name="monthly_expense">
+    <Key>
+      <PropertyRef Name="monthlyExpense_id" />
+    </Key>
+    <Property Name="monthlyExpense_id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cost_heat" Type="Decimal" />
+    <Property Name="cost_water" Type="Decimal" />
+    <Property Name="cost_electricity" Type="Decimal" />
+    <Property Name="rent_id" Type="Int32" />
+    <NavigationProperty Name="mothlyexpense_employee" Relationship="Self.fk_expense_monthly_expnse" FromRole="monthly_expense" ToRole="mothlyexpense_employee" />
+    <NavigationProperty Name="rent" Relationship="Self.fk_expense_rent" FromRole="monthly_expense" ToRole="rent" />
+  </EntityType>
+  <EntityType Name="mothlyexpense_employee">
+    <Key>
+      <PropertyRef Name="SIN" />
+      <PropertyRef Name="monthlyExpense_id" />
+    </Key>
+    <Property Name="hours_worked" Type="Decimal" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="SIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="monthlyExpense_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="employee" Relationship="Self.fk_expense_monthly_employee" FromRole="mothlyexpense_employee" ToRole="employee" />
+    <NavigationProperty Name="monthly_expense" Relationship="Self.fk_expense_monthly_expnse" FromRole="mothlyexpense_employee" ToRole="monthly_expense" />
+  </EntityType>
+  <EntityType Name="rent">
+    <Key>
+      <PropertyRef Name="rent_id" />
+    </Key>
+    <Property Name="rent_id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cost_rent" Type="Decimal" />
+    <NavigationProperty Name="monthly_expense" Relationship="Self.fk_expense_rent" FromRole="rent" ToRole="monthly_expense" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="trn_code" />
+    </Key>
+    <Property Name="trn_code" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="total_price" Type="Decimal" />
+    <Property Name="cust_id" Type="Int32" />
+    <NavigationProperty Name="customer" Relationship="Self.fk_trn_cust" FromRole="transaction" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="volume">
+    <Key>
+      <PropertyRef Name="volume_id" />
+    </Key>
+    <Property Name="volume_id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="magazine_id" Type="Int32" />
+    <NavigationProperty Name="articles" Relationship="Self.fk_volume_article" FromRole="volume" ToRole="articles" />
+    <NavigationProperty Name="magazine" Relationship="Self.fk_volume_magazine" FromRole="volume" ToRole="magazine" />
+  </EntityType>
+  <Association Name="fk_volume_article">
+    <End Role="volume" Type="Self.volume" Multiplicity="0..1" />
+    <End Role="articles" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volume">
+        <PropertyRef Name="volume_id" />
+      </Principal>
+      <Dependent Role="articles">
+        <PropertyRef Name="volume_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_trn_cust">
+    <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="cust_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_expense_monthly_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="mothlyexpense_employee" Type="Self.mothlyexpense_employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="SIN" />
+      </Principal>
+      <Dependent Role="mothlyexpense_employee">
+        <PropertyRef Name="SIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_volume_magazine">
+    <End Role="magazine" Type="Self.magazine" Multiplicity="0..1" />
+    <End Role="volume" Type="Self.volume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="magazine">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="volume">
+        <PropertyRef Name="magazine_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_expense_monthly_expnse">
+    <End Role="monthly_expense" Type="Self.monthly_expense" Multiplicity="1" />
+    <End Role="mothlyexpense_employee" Type="Self.mothlyexpense_employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monthly_expense">
+        <PropertyRef Name="monthlyExpense_id" />
+      </Principal>
+      <Dependent Role="mothlyexpense_employee">
+        <PropertyRef Name="monthlyExpense_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_expense_rent">
+    <End Role="rent" Type="Self.rent" Multiplicity="0..1" />
+    <End Role="monthly_expense" Type="Self.monthly_expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rent">
+        <PropertyRef Name="rent_id" />
+      </Principal>
+      <Dependent Role="monthly_expense">
+        <PropertyRef Name="rent_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="author_articles">
+    <End Role="articles" Type="Self.article" Multiplicity="*" />
+    <End Role="author" Type="Self.author" Multiplicity="*" />
+  </Association>
+  <Association Name="book_author">
+    <End Role="author" Type="Self.author" Multiplicity="*" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="HSLEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="articles" EntityType="Self.article" />
+    <EntitySet Name="authors" EntityType="Self.author" />
+    <EntitySet Name="books" EntityType="Self.book" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="items" EntityType="Self.item" />
+    <EntitySet Name="magazines" EntityType="Self.magazine" />
+    <EntitySet Name="monthly_expense" EntityType="Self.monthly_expense" />
+    <EntitySet Name="mothlyexpense_employee" EntityType="Self.mothlyexpense_employee" />
+    <EntitySet Name="rents" EntityType="Self.rent" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <EntitySet Name="volumes" EntityType="Self.volume" />
+    <AssociationSet Name="fk_volume_article" Association="Self.fk_volume_article">
+      <End Role="volume" EntitySet="volumes" />
+      <End Role="articles" EntitySet="articles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_trn_cust" Association="Self.fk_trn_cust">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_expense_monthly_employee" Association="Self.fk_expense_monthly_employee">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="mothlyexpense_employee" EntitySet="mothlyexpense_employee" />
+    </AssociationSet>
+    <AssociationSet Name="fk_volume_magazine" Association="Self.fk_volume_magazine">
+      <End Role="magazine" EntitySet="magazines" />
+      <End Role="volume" EntitySet="volumes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_expense_monthly_expnse" Association="Self.fk_expense_monthly_expnse">
+      <End Role="monthly_expense" EntitySet="monthly_expense" />
+      <End Role="mothlyexpense_employee" EntitySet="mothlyexpense_employee" />
+    </AssociationSet>
+    <AssociationSet Name="fk_expense_rent" Association="Self.fk_expense_rent">
+      <End Role="rent" EntitySet="rents" />
+      <End Role="monthly_expense" EntitySet="monthly_expense" />
+    </AssociationSet>
+    <AssociationSet Name="author_articles" Association="Self.author_articles">
+      <End Role="articles" EntitySet="articles" />
+      <End Role="author" EntitySet="authors" />
+    </AssociationSet>
+    <AssociationSet Name="book_author" Association="Self.book_author">
+      <End Role="author" EntitySet="authors" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
