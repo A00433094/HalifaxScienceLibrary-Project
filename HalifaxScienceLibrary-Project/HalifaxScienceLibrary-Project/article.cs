@@ -17,17 +17,19 @@ namespace HalifaxScienceLibrary_Project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public article()
         {
-            this.authors = new HashSet<author>();
+            this.author_articles = new HashSet<author_articles>();
         }
     
         public int article_id { get; set; }
         public string page { get; set; }
         public string title { get; set; }
-        public Nullable<int> volume_id { get; set; }
+        public int volume_id { get; set; }
         public string year { get; set; }
+        public int C_id { get; set; }
     
-        public virtual volume volume { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<author> authors { get; set; }
+        public virtual ICollection<author_articles> author_articles { get; set; }
+        public virtual magazine magazine { get; set; }
+        public virtual volume volume { get; set; }
     }
 }

@@ -159,21 +159,67 @@
 <h2 style="text-align:center; font-weight:bold ;margin-top: 10px">Welcome to Home Page</h2>
 <br />
 <br />
-@Html.AntiForgeryToken()
-@using (Html.BeginForm("DisplayTables","ShowTables", FormMethod.Post))
-{
+
 <div class="form-group book-bus-form-box">
 
-    <div class="input-div">
-        <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Display Table Names</label>
-    </div>
+
     <input id="index" name="index" type="hidden" value="hello" />
-    <div class="input-div">
-        <button type="submit" id="display_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Display Tables </button>
-    </div>
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("DisplayTables", "ShowTables", FormMethod.Post))
+    {
+        <div class="input-div">
+            <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Display Table Names</label>
+        </div>
+        <div class="input-div">
+            <button type="submit" id="display_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Display Tables </button>
+        </div>
+    }
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Index", "articles", FormMethod.Post))
+    {
+
+        <div class="input-div">
+            <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Add a new Article</label>
+        </div>
+        <div class="input-div">
+            <button type="submit" id="add_Article_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Add Article </button>
+        </div>
+    }
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Index", "customers", FormMethod.Post))
+    {
+
+        <div class="input-div">
+            <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Add a new Customer</label>
+        </div>
+        <div class="input-div">
+            <button type="submit" id="add_Article_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Add Customer </button>
+        </div>
+    }
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Index", "transactions", FormMethod.Post))
+    {
+
+        <div class="input-div">
+            <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Add a new Transaction</label>
+        </div>
+        <div class="input-div">
+            <button type="submit" id="add_Article_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Add Transaction </button>
+        </div>
+    }
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Index", "transactions", FormMethod.Post))
+    {
+
+        <div class="input-div">
+            <label class="bus-select" style="font-weight:bold; margin-left:0.5rem;border:0px!important">Cancel a Transaction</label>
+        </div>
+        <div class="input-div">
+            <button type="submit" id="add_Article_tables" class="btn btn-primary bus" style="margin-bottom:0.5rem;margin-top:0.5rem"> Cancel Transaction </button>
+        </div>
+    }
 </div>
 
-    <br />
-    <br />
+<br />
+<br />
 
-}

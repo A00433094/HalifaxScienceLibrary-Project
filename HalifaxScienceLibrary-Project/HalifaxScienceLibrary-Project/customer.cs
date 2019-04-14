@@ -25,6 +25,7 @@ namespace HalifaxScienceLibrary_Project
         public string lname { get; set; }
         public string email { get; set; }
         public string phone_num { get; set; }
+        public int discount_code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaction> transactions { get; set; }

@@ -160,9 +160,7 @@
 <h2 style="text-align:center; font-weight:bold ;margin-top: 10px">Show Tables</h2>
 <br />
 <br />
-@Html.AntiForgeryToken()
-@using (Html.BeginForm())
-{
+
     <div class="form-group book-bus-form-box">
 
         <div class="">
@@ -175,7 +173,7 @@
                 <tbody>
                     @foreach (var v in ViewBag.Tableslist)
                     {
-                        var c= v + "_table_view";
+                        var c = v + "_table_view";
                         <div class="input-div">
                             <form action="@c" method="post">
                                 <button type="submit" id="@v" class="btn btn-primary bus" style="margin-left:90px">@v. </button>
@@ -192,8 +190,6 @@
     </div>
     <br />
     <br />
-
-}
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>     
 

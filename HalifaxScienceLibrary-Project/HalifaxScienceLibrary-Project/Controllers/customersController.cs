@@ -47,9 +47,21 @@ namespace HalifaxScienceLibrary_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "cust_id,fname,lname,email,phone_num")] customer customer)
+        public async Task<ActionResult> Create([Bind(Include = "cust_id,fname,lname,email,phone_num,discount_code")] customer customer)
         {
-            if (ModelState.IsValid)
+            int a = customer.cust_id;
+            var cust_fname = customer.fname;
+            var cust_lname = customer.lname;
+
+
+            var customerData = db.customers.Where(m => m.fname.Equals(cust_fname,StringComparison.OrdinalIgnoreCase) && m.lname.Equals(cust_lname, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            if (customerData != null)
+            {
+                ViewBag.ErrorMessage = "Customer already exists with same First Name and Last Name !! ";
+                var customers = db.customers.ToListAsync();
+                return View("Index", await customers);
+            }
+            else if (ModelState.IsValid)
             {
                 db.customers.Add(customer);
                 await db.SaveChangesAsync();
@@ -79,7 +91,7 @@ namespace HalifaxScienceLibrary_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "cust_id,fname,lname,email,phone_num")] customer customer)
+        public async Task<ActionResult> Edit([Bind(Include = "cust_id,fname,lname,email,phone_num,discount_code")] customer customer)
         {
             if (ModelState.IsValid)
             {

@@ -17,8 +17,8 @@ namespace HalifaxScienceLibrary_Project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public author()
         {
-            this.articles = new HashSet<article>();
-            this.books = new HashSet<book>();
+            this.author_articles = new HashSet<author_articles>();
+            this.book_author = new HashSet<book_author>();
         }
     
         public int C_id { get; set; }
@@ -27,8 +27,8 @@ namespace HalifaxScienceLibrary_Project
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<article> articles { get; set; }
+        public virtual ICollection<author_articles> author_articles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> books { get; set; }
+        public virtual ICollection<book_author> book_author { get; set; }
     }
 }

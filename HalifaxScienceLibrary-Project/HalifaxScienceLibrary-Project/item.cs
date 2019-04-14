@@ -14,7 +14,16 @@ namespace HalifaxScienceLibrary_Project
     
     public partial class item
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public item()
+        {
+            this.buy_items = new HashSet<buy_items>();
+        }
+    
         public long C_id { get; set; }
         public float price { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<buy_items> buy_items { get; set; }
     }
 }

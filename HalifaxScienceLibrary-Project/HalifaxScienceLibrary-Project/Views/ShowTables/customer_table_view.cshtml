@@ -2,13 +2,15 @@
 
 @model IEnumerable<HalifaxScienceLibrary_Project.customer>
 
-
 @{
-    ViewBag.Title = "customer_table_view";
+    ViewBag.Title = "Index";
 }
 
-<h2>customer_table_view</h2>
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -22,6 +24,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.phone_num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.discount_code)
         </th>
         <th></th>
     </tr>
@@ -41,11 +46,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.phone_num)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_code)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.cust_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.cust_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.cust_id })
+            </td>
         </tr>
     }
 
 </table>
+
 <div>
     @Html.ActionLink("Back to List", "DisplayTables")
 </div>

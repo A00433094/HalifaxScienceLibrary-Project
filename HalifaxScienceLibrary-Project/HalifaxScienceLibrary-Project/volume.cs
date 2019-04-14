@@ -22,7 +22,7 @@ namespace HalifaxScienceLibrary_Project
     
         public int volume_id { get; set; }
         public string year { get; set; }
-        public Nullable<int> magazine_id { get; set; }
+        public int magazine_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<article> articles { get; set; }

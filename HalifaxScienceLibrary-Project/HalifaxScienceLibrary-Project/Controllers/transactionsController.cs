@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HalifaxScienceLibrary_Project;
+using System.Globalization;
 
 namespace HalifaxScienceLibrary_Project.Controllers
 {
@@ -53,6 +54,7 @@ namespace HalifaxScienceLibrary_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.transactions.Add(transaction);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -115,10 +117,22 @@ namespace HalifaxScienceLibrary_Project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            
             transaction transaction = await db.transactions.FindAsync(id);
+
+            DateTime startDate = transaction.date;
+            DateTime expiryDate = DateTime.Today.Subtract(TimeSpan.FromDays(30));
+            if (startDate <= expiryDate)
+            {
+                ViewBag.ErrorMessage = "Transaction cannot be deleted as it is older than 30 days !! ";
+                var transactions = db.transactions.ToListAsync();
+                return View("Index", await transactions);
+            }
+            else { 
             db.transactions.Remove(transaction);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
         }
 
         protected override void Dispose(bool disposing)

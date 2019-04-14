@@ -25,17 +25,20 @@ namespace HalifaxScienceLibrary_Project
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<article> articles { get; set; }
-        public virtual DbSet<author> authors { get; set; }
         public virtual DbSet<book> books { get; set; }
-        public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<item> items { get; set; }
-        public virtual DbSet<magazine> magazines { get; set; }
         public virtual DbSet<monthly_expense> monthly_expense { get; set; }
         public virtual DbSet<mothlyexpense_employee> mothlyexpense_employee { get; set; }
         public virtual DbSet<rent> rents { get; set; }
-        public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<buy_items> buy_items { get; set; }
+        public virtual DbSet<author> authors { get; set; }
+        public virtual DbSet<author_articles> author_articles { get; set; }
+        public virtual DbSet<book_author> book_author { get; set; }
+        public virtual DbSet<customer> customers { get; set; }
+        public virtual DbSet<article> articles { get; set; }
+        public virtual DbSet<magazine> magazines { get; set; }
         public virtual DbSet<volume> volumes { get; set; }
+        public virtual DbSet<transaction> transactions { get; set; }
     }
 }

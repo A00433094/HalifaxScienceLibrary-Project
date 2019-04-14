@@ -45,23 +45,19 @@ namespace HalifaxScienceLibrary_Project.Controllers
 
             return View(ViewBag.Tableslist);
         }
-        [HttpPost]
-        public async Task<ActionResult> ShowTableContent(string table_name)
-        {
-            String table = table_name;
-            if(table_name=="author")
-                return View(table_name.ToUpper() + "_table_view");
-            else if (table_name == "transaction")
-                return View(table_name.ToUpper() + "_table_view", await db.authors.ToListAsync());
-            else
-                return View(table_name.ToUpper() + "_table_view", await db.authors.ToListAsync());
-        }
 
         public async Task<ActionResult> author_table_view()
         {
             return View(await db.authors.ToListAsync());
         }
-
+        public async Task<ActionResult> author_articles_table_view()
+        {
+            return View(await db.author_articles.ToListAsync());
+        }
+        public async Task<ActionResult> articles_table_view()
+        {
+            return View(await db.articles.ToListAsync());
+        }
         public async Task<ActionResult> customer_table_view()
         {
             return View(await db.customers.ToListAsync());
@@ -76,12 +72,7 @@ namespace HalifaxScienceLibrary_Project.Controllers
         {
             return View(await db.items.ToListAsync());
         }
-        
-        public async Task<ActionResult> articles_table_view()
-        {
-            return View(await db.articles.ToListAsync());
-        }
-
+     
         public async Task<ActionResult> rent_table_view()
         {
             return View(await db.rents.ToListAsync());
@@ -110,6 +101,21 @@ namespace HalifaxScienceLibrary_Project.Controllers
         public async Task<ActionResult> mothlyexpense_employee_table_view()
         {
             return View(await db.mothlyexpense_employee.ToListAsync());
+        }
+
+        public async Task<ActionResult> buy_items_table_view()
+        {
+            return View(await db.buy_items.ToListAsync());
+        }
+
+        public async Task<ActionResult> book_table_view()
+        {
+            return View(await db.books.ToListAsync());
+        }
+
+        public async Task<ActionResult> book_author_table_view()
+        {
+            return View(await db.book_author.ToListAsync());
         }
     }
 }

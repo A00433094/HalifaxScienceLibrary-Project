@@ -4,11 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Transactions</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<br />
+<div class="form-group">
+    <label class="field-validation-error"> @ViewBag.ErrorMessage</label>
+</div>
 <table class="table">
     <tr>
         <th>
@@ -23,23 +27,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total_price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer.fname)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.trn_code }) |
-            @Html.ActionLink("Details", "Details", new { id=item.trn_code }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.trn_code })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer.fname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.trn_code }) |
+                @Html.ActionLink("Details", "Details", new { id = item.trn_code }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.trn_code })
+            </td>
+        </tr>
+    }
 
 </table>

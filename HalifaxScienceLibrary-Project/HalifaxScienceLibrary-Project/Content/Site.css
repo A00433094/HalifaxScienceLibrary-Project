@@ -21,3 +21,9 @@ select,
 textarea {
     max-width: 280px;
 }
+table{
+    color:white!important;
+}
+tbody{
+    color:white!important;
+}

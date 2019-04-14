@@ -14,11 +14,19 @@ namespace HalifaxScienceLibrary_Project
     
     public partial class transaction
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public transaction()
+        {
+            this.buy_items = new HashSet<buy_items>();
+        }
+    
         public int trn_code { get; set; }
-        public string date { get; set; }
+        public System.DateTime date { get; set; }
         public Nullable<decimal> total_price { get; set; }
         public Nullable<int> cust_id { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<buy_items> buy_items { get; set; }
         public virtual customer customer { get; set; }
     }
 }
